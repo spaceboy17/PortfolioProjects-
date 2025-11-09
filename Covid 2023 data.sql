@@ -1,51 +1,51 @@
 
 
---select location, population, total_cases, total_deaths, (total_deaths /total_cases)*100 as DeathPercent
---from PortfolioProject..coviddeaths
---where total_cases <> 0 
+select location, population, total_cases, total_deaths, (total_deaths /total_cases)*100 as DeathPercent
+from PortfolioProject..coviddeaths
+where total_cases <> 0 
 
---SELECT 
---    location, 
---    population, 
---    total_cases, 
---    total_deaths,
---    CASE 
---        WHEN total_cases = 0 THEN 0 
---        ELSE (total_deaths * 100.0 / total_cases) 
---    END AS DeathPercent
---FROM PortfolioProject..coviddeaths
---Where location like '%india%';
+SELECT 
+    location, 
+    population, 
+    total_cases, 
+    total_deaths,
+    CASE 
+        WHEN total_cases = 0 THEN 0 
+        ELSE (total_deaths * 100.0 / total_cases) 
+    END AS DeathPercent
+FROM PortfolioProject..coviddeaths
+Where location like '%india%';
 
--- looking at the countries highest infection rate compared to population
---select location,population,MAX(total_cases) as HighestInfectionCount, MAX((total_cases/population))*100 as PercentPopulationInfected
---from PortfolioProject..coviddeaths
---group by location, population
+ looking at the countries highest infection rate compared to population
+select location,population,MAX(total_cases) as HighestInfectionCount, MAX((total_cases/population))*100 as PercentPopulationInfected
+from PortfolioProject..coviddeaths
+group by location, population
 
----- showing the countries with highest death count per population
+-- showing the countries with highest death count per population
 
---select location, population, MAX(total_deaths) as HighestDeathCount, MAX((total_deaths/population))*100 as PercentDeath
---from PortfolioProject..coviddeaths
---group by location, population
+select location, population, MAX(total_deaths) as HighestDeathCount, MAX((total_deaths/population))*100 as PercentDeath
+from PortfolioProject..coviddeaths
+group by location, population
 
----- showing the continents with Total deaths
---select location, MAX(total_deaths) as TotaldeathCount
---from PortfolioProject..CovidDeaths
---where continent is null and location not like '%countries'
---group by location 
+-- showing the continents with Total deaths
+select location, MAX(total_deaths) as TotaldeathCount
+from PortfolioProject..CovidDeaths
+where continent is null and location not like '%countries'
+group by location 
 
--- Showing the new cases, total cases, total death and death precentage
---select date, new_cases, SUM(new_cases) as totalcases, SUM(new_deaths) as totaldeaths,
---CASE 
---        WHEN SUM(CAST(new_cases AS INT)) = 0 THEN 0
---        ELSE SUM(CAST(new_deaths AS INT)) * 100.0 / SUM(CAST(new_cases AS INT))
---    END AS DeathPercentage
---from 
---	PortfolioProject..CovidDeaths
---where 
---	continent is not null
---group by date, new_cases
+ Showing the new cases, total cases, total death and death precentage
+select date, new_cases, SUM(new_cases) as totalcases, SUM(new_deaths) as totaldeaths,
+CASE 
+        WHEN SUM(CAST(new_cases AS INT)) = 0 THEN 0
+        ELSE SUM(CAST(new_deaths AS INT)) * 100.0 / SUM(CAST(new_cases AS INT))
+    END AS DeathPercentage
+from 
+	PortfolioProject..CovidDeaths
+where 
+	continent is not null
+group by date, new_cases
 
-------
+----
 
 select * from  portfolioproject..coviddeaths
 
@@ -342,3 +342,4 @@ ON cd.location = dv.location AND cd.date = dv.date
 WHERE
 cd.location LIKE 'india%'
 creating views 
+
