@@ -33,7 +33,8 @@ from PortfolioProject..CovidDeaths
 where continent is null and location not like '%countries'
 group by location 
 
- Showing the new cases, total cases, total death and death precentage
+	 
+-- Showing the new cases, total cases, total death and death precentage
 select date, new_cases, SUM(new_cases) as totalcases, SUM(new_deaths) as totaldeaths,
 CASE 
         WHEN SUM(CAST(new_cases AS INT)) = 0 THEN 0
