@@ -116,7 +116,7 @@ ORDER BY location ASC;
 
 
 
-
+-- 
 with PopvsVac (continent, location, population, date, people_vaccinated, new_vaccinations, Rollingpeoplevaccinated)
 as(
 select  dea.continent, dea.location, dea.population, dea.date, vac.people_vaccinated, vac.new_vaccinations,
